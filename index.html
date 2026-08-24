@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exfield – Habit Calendar</title>
+  <meta name="description" content="Don't break the chain. A wall-calendar habit tracker: one red X per day, all data on your device.">
+  <style>
+    :root {
+      --paper: #FAF6EF;
+      --ink: #2B2A27;
+      --ink-faded: #9B968C;
+      --marker: #CC2F26;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #201D18;
+        --ink: #EAE4D8;
+        --ink-faded: #8F887A;
+        --marker: #E0473C;
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    main { max-width: 26rem; text-align: center; }
+    .x {
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--marker);
+      line-height: 1;
+      transform: rotate(-4deg);
+      display: inline-block;
+    }
+    h1 {
+      margin-top: 18px;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .tag { margin-top: 10px; color: var(--ink-faded); font-size: 1rem; line-height: 1.5; }
+    .soon {
+      margin-top: 28px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+    }
+    footer { margin-top: 40px; font-size: 0.8rem; }
+    footer a { color: var(--ink-faded); }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="x">✗</span>
+    <h1>Exfield</h1>
+    <p class="tag">Don't break the chain. A wall-calendar habit tracker —
+      one red X per day, all data on your device.</p>
+    <p class="soon">Coming to the App Store and Google Play</p>
+    <footer><a href="/privacy">Privacy policy</a></footer>
+  </main>
+</body>
+</html>
