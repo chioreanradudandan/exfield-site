@@ -62,14 +62,19 @@
       text-transform: uppercase;
       color: var(--ink-faded);
     }
+    /* The app's marker X (app/lib/ui/marker_x.dart, seed 6): two
+       jittered cubic strokes, round felt-tip caps, the second pass a
+       touch thinner. The X sits 22% inside its cell, hence the negative
+       margins. */
     .x {
-      font-size: 4rem;
-      font-weight: 800;
-      color: var(--marker);
-      line-height: 1;
-      transform: rotate(-4deg);
-      display: inline-block;
+      width: 6.5rem;
+      height: 6.5rem;
+      display: block;
+      margin: -1.2rem auto -1.4rem;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
+    .x path { fill: none; stroke: var(--marker); stroke-linecap: round; }
     h1 {
       margin-top: 18px;
       font-size: 1.6rem;
@@ -92,7 +97,10 @@
 </head>
 <body>
   <main>
-    <span class="x">✗</span>
+    <svg class="x" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M17.3 17.7 C41.5 32.9 54.5 53.1 82.1 73.7" stroke-width="11.4"/>
+      <path d="M81.1 27.3 C56.9 43.7 37.5 62.7 19.6 75.5" stroke-width="10.3"/>
+    </svg>
     <h1>Exfield</h1>
     <p class="tag">Don't break the chain. A wall-calendar habit tracker —
       one red X per day, all data on your device.</p>
@@ -121,6 +129,43 @@
       <figcaption>The whole year at a glance.</figcaption>
     </figure>
   </section>
+  <script>
+    // Draws the X on stroke by stroke, the way the app does when a day
+    // is marked: 450ms, ease-out, first stroke in the first half of the
+    // progress, then the second. Tap to redraw.
+    (function () {
+      var svg = document.querySelector('.x');
+      var strokes = Array.prototype.map.call(svg.querySelectorAll('path'), function (path) {
+        var length = path.getTotalLength();
+        path.style.strokeDasharray = length;
+        return { path: path, length: length };
+      });
+      var DRAW_MS = 450, FIRST_STROKE_END = 0.5;
+      function show(progress) {
+        var first = Math.min(1, progress / FIRST_STROKE_END);
+        var second = Math.max(0, (progress - FIRST_STROKE_END) / (1 - FIRST_STROKE_END));
+        strokes[0].path.style.strokeDashoffset = strokes[0].length * (1 - first);
+        strokes[1].path.style.strokeDashoffset = strokes[1].length * (1 - second);
+      }
+      function draw() {
+        var start = null;
+        function frame(now) {
+          if (start === null) start = now;
+          var t = Math.min(1, (now - start) / DRAW_MS);
+          show(1 - Math.pow(1 - t, 3));
+          if (t < 1) requestAnimationFrame(frame);
+        }
+        show(0);
+        requestAnimationFrame(frame);
+      }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        show(1);
+      } else {
+        draw();
+        svg.addEventListener('click', draw);
+      }
+    })();
+  </script>
   <footer><a href="/privacy">Privacy policy</a> · <a href="mailto:hello@exfield.app">hello@exfield.app</a></footer>
 </body>
 </html>
