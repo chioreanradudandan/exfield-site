@@ -83,8 +83,23 @@
       text-transform: uppercase;
     }
     .tag { margin-top: 10px; color: var(--ink-faded); font-size: 1rem; line-height: 1.5; }
-    .soon {
+    .store {
+      display: inline-block;
       margin-top: 28px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background-color 0.15s;
+    }
+    .store:hover, .store:focus-visible { background: var(--marker); }
+    .soon {
+      margin-top: 18px;
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.18em;
@@ -104,7 +119,8 @@
     <h1>Exfield</h1>
     <p class="tag">Don't break the chain. A wall-calendar habit tracker —
       one red X per day, all data on your device.</p>
-    <p class="soon">Coming to the App Store and Google Play</p>
+    <a class="store" href="https://apps.apple.com/app/exfield-habit-calendar/id6805454452">Download on the App Store</a>
+    <p class="soon">Google Play coming soon</p>
   </main>
   <section class="screens" aria-label="Screenshots">
     <figure>
