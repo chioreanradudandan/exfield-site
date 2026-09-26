@@ -83,21 +83,10 @@
       text-transform: uppercase;
     }
     .tag { margin-top: 10px; color: var(--ink-faded); font-size: 1rem; line-height: 1.5; }
-    .store {
-      display: inline-block;
-      margin-top: 28px;
-      padding: 14px 26px;
-      border-radius: 999px;
-      background: var(--ink);
-      color: var(--paper);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background-color 0.15s;
-    }
-    .store:hover, .store:focus-visible { background: var(--marker); }
+    /* Apple's official badge; its artwork carries its own shape and
+       border, so the link only sizes it (Apple's minimum is 40px tall). */
+    .store { display: inline-block; margin-top: 28px; }
+    .store img { display: block; width: auto; height: 3rem; }
     .soon {
       margin-top: 18px;
       font-size: 0.75rem;
@@ -119,7 +108,12 @@
     <h1>Exfield</h1>
     <p class="tag">Don't break the chain. A wall-calendar habit tracker —
       one red X per day, all data on your device.</p>
-    <a class="store" href="https://apps.apple.com/app/exfield-habit-calendar/id6805454452">Download on the App Store</a>
+    <a class="store" href="https://apps.apple.com/app/exfield-habit-calendar/id6805454452">
+      <picture>
+        <source srcset="img/app-store-badge-white.svg" media="(prefers-color-scheme: dark)">
+        <img src="img/app-store-badge-black.svg" width="120" height="40" alt="Download on the App Store">
+      </picture>
+    </a>
     <p class="soon">Google Play coming soon</p>
   </main>
   <section class="screens" aria-label="Screenshots">
