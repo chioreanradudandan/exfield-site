@@ -83,18 +83,19 @@
       text-transform: uppercase;
     }
     .tag { margin-top: 10px; color: var(--ink-faded); font-size: 1rem; line-height: 1.5; }
-    /* Apple's official badge; its artwork carries its own shape and
-       border, so the link only sizes it (Apple's minimum is 40px tall). */
-    .store { display: inline-block; margin-top: 28px; }
-    .store img { display: block; width: auto; height: 3rem; }
-    .soon {
-      margin-top: 18px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-faded);
+    /* Apple's and Google's official badges; their artwork carries its own
+       shape and border, so the links only size them. Both share one
+       height (Apple's minimum is 40px; Google's must be no smaller than
+       the other stores' badges) and wrap onto two rows on narrow phones. */
+    .stores {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
     }
+    .store { display: block; }
+    .store img { display: block; width: auto; height: 3rem; }
     footer { margin-top: 56px; font-size: 0.8rem; }
     footer a { color: var(--ink-faded); }
   </style>
@@ -108,13 +109,17 @@
     <h1>Exfield</h1>
     <p class="tag">Don't break the chain. A wall-calendar habit tracker —
       one red X per day, all data on your device.</p>
-    <a class="store" href="https://apps.apple.com/app/exfield-habit-calendar/id6805454452">
-      <picture>
-        <source srcset="img/app-store-badge-white.svg" media="(prefers-color-scheme: dark)">
-        <img src="img/app-store-badge-black.svg" width="120" height="40" alt="Download on the App Store">
-      </picture>
-    </a>
-    <p class="soon">Google Play coming soon</p>
+    <div class="stores">
+      <a class="store" href="https://apps.apple.com/app/exfield-habit-calendar/id6805454452">
+        <picture>
+          <source srcset="img/app-store-badge-white.svg" media="(prefers-color-scheme: dark)">
+          <img src="img/app-store-badge-black.svg" width="120" height="40" alt="Download on the App Store">
+        </picture>
+      </a>
+      <a class="store" href="https://play.google.com/store/apps/details?id=app.exfield.habittracker">
+        <img src="img/google-play-badge.svg" width="239" height="71" alt="Get it on Google Play">
+      </a>
+    </div>
   </main>
   <section class="screens" aria-label="Screenshots">
     <figure>
